@@ -1,0 +1,22 @@
+﻿<Window x:Class="VideoReinforcer.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Video Reinforcer" Loaded="Window_Loaded" WindowStartupLocation="Manual" ResizeMode="CanMinimize" KeyUp="Window_KeyUp" Closed="Window_Closed" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="301" d:DesignWidth="407" SizeToContent="WidthAndHeight" Closing="Window_Closing">
+
+    <StackPanel Name="MainSpl">
+        <Menu Height="23" HorizontalAlignment="Stretch" Name="MainMenu" VerticalAlignment="Top" HorizontalContentAlignment="Left">
+            <MenuItem Header="File" Name="FileMenu">
+                <MenuItem Header="Load" Name="LoadMenuItem" Click="LoadMenuItem_Click" />
+                <MenuItem Header="Save" Name="SaveMenuItem" Click="SaveMenuItem_Click" />
+            </MenuItem>
+            <MenuItem Header="Settings" Name="SettingsMenu">
+                <MenuItem Header="General..." Name="GeneralSettingsMenuItem" Click="GeneralSettingsMenuItem_Click" />
+                <Separator Name="SettingsSeparator1" />
+                <Separator Name="SettingsSeparator2" />
+                <MenuItem Header="Add Button..." Name="AddButtonMenuItem" Click="AddButtonMenuItem_Click" />
+            </MenuItem>
+        </Menu>
+        <Grid Name="ButtonGrd" MinWidth="300" MinHeight="100" Margin="8" HorizontalAlignment="Center" VerticalAlignment="Center">
+        </Grid>
+    </StackPanel>
+</Window>
