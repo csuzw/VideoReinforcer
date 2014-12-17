@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -20,7 +22,7 @@ namespace VideoReinforcer.Windows
     {
         // globals
         private VideoReinforcerSettingsContainer settings = null;
-        private List<Button> buttonList = new List<Button>();
+        private List<ToggleButton> buttonList = new List<ToggleButton>();
         private List<VideoWindow> videoWindowList = new List<VideoWindow>();
         private bool isMuted = false;
         private bool hideCursor = false;
@@ -182,7 +184,11 @@ namespace VideoReinforcer.Windows
         {
             int index = GetIndexFromSource(e.Source);
             if (index >= 0)
-            {
+            {             
+                foreach (var button in buttonList.Where(b => b != e.Source))
+                {
+                    button.IsChecked = false;
+                }
                 ToggleVideo(index);
             }
         }
@@ -270,9 +276,9 @@ namespace VideoReinforcer.Windows
                     return SettingsMenu.Items.IndexOf(parentMenuItem) - 2;
                 }
             }
-            else if (source is Button)
+            else if (source is ToggleButton)
             {
-                return buttonList.IndexOf((Button)source);
+                return buttonList.IndexOf((ToggleButton)source);
             }
             return -1;
         }
@@ -385,14 +391,14 @@ namespace VideoReinforcer.Windows
                 ButtonSettingsContainer buttonSettings = settings.ButtonSettingsList[index];
 
                 bool exists = (index < buttonList.Count);
-                Button button;
+                ToggleButton button;
                 if (exists)
                 {
                     button = buttonList[index];
                 }
                 else
                 {
-                    button = new Button();
+                    button = new ToggleButton();
                     button.Margin = new Thickness(4);
                     button.Click += ButtonClick;
                 }
@@ -474,7 +480,7 @@ namespace VideoReinforcer.Windows
         {
             if (index < buttonList.Count)
             {
-                Button button = buttonList[index];
+                ToggleButton button = buttonList[index];
                 SettingsMenu.Items.RemoveAt(index + 2);
                 ButtonGrd.Children.Remove(button);
                 buttonList.Remove(button);
