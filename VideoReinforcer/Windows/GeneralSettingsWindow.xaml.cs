@@ -57,6 +57,7 @@ namespace VideoReinforcer.Windows
             ColumnsSlr.Value = this.generalSettings.ButtonColumns;
             MuteShortcutTxt.Text = this.generalSettings.MuteShortcut.ToString();
             HideCursorShortcutTxt.Text = this.generalSettings.HideCursorShortcut.ToString();
+            DefaultToPrimaryScreenChk.IsChecked = this.generalSettings.DefaultToPrimaryScreen;
 
             WidthSlr_ValueChanged(sender, null);
             HeightSlr_ValueChanged(sender, null);
@@ -109,6 +110,7 @@ namespace VideoReinforcer.Windows
             newGeneralSettings.ButtonColumns = (int)ColumnsSlr.Value;
             newGeneralSettings.MuteShortcut = muteShortcut;
             newGeneralSettings.HideCursorShortcut = hideCursorShortcut;
+            newGeneralSettings.DefaultToPrimaryScreen = DefaultToPrimaryScreenChk.IsChecked ?? true;
 
             string errorMessage = "";
             if (!newGeneralSettings.IsValid(out errorMessage))

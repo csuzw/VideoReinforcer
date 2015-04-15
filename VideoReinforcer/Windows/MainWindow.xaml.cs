@@ -65,10 +65,12 @@ namespace VideoReinforcer.Windows
         /// </summary>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            InitialiseVideoWindowList();
-
             settings = new VideoReinforcerSettingsContainer();
-            LoadSettingsFromFile();
+            if (LoadSettingsFromFile())
+            {
+                InitialiseVideoWindowList();
+                BuildFullLayout();
+            }
         }
 
         /// <summary>
@@ -83,7 +85,10 @@ namespace VideoReinforcer.Windows
             if (openDialog.ShowDialog() ?? false)
             {
 
-                LoadSettingsFromFile(openDialog.FileName);
+                if (LoadSettingsFromFile(openDialog.FileName))
+                {
+                    BuildFullLayout();
+                }
             }
         }
 
@@ -205,10 +210,6 @@ namespace VideoReinforcer.Windows
             {
                 MessageBox.Show(this, errorMessage, Strings.ErrorCaption);
                 return false;
-            }
-            else
-            {
-                BuildFullLayout();
             }
             return true;
         }
@@ -578,7 +579,7 @@ namespace VideoReinforcer.Windows
         {
             for (int i = 1; i <= Constants.NUMBER_OF_WINDOWS; i++)
             {
-                System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.PrimaryScreen;
+                System.Windows.Forms.Screen screen = (settings.GeneralSettings.DefaultToPrimaryScreen) ? System.Windows.Forms.Screen.PrimaryScreen : null;
                 if (i <= System.Windows.Forms.Screen.AllScreens.Length)
                 {
                     screen = System.Windows.Forms.Screen.AllScreens[i - 1];

@@ -10,7 +10,8 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
-            <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -33,6 +34,7 @@
             <TextBox IsReadOnly="True" Margin="4,4,0,4" Name="HideCursorShortcutTxt" Grid.Row="4" Grid.Column="1" />
             <Button ClickMode="Release" Content="..." Margin="0,4,8,4" MinWidth="25" Name="HideCursorShortcutBtn" OverridesDefaultStyle="False" Grid.Column="2" Grid.Row="4" Click="HideCursorBtn_Click" />
             <Label Content="Hide Cursor Shortcut" HorizontalAlignment="Left" Margin="4" Name="HideCursorShortcutLbl" VerticalAlignment="Top" Grid.Row="4" />
+            <CheckBox Content="Default to primary screen" Grid.Column="1" HorizontalAlignment="Left" Margin="4" Grid.Row="5" VerticalAlignment="Top" Name="DefaultToPrimaryScreenChk"/>
         </Grid>
         <Grid Name="ButtonGrd" FlowDirection="RightToLeft">
             <Grid.RowDefinitions>

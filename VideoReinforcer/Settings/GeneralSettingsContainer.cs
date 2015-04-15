@@ -38,6 +38,11 @@ namespace VideoReinforcer.Settings
         public Key HideCursorShortcut { get; set; }
 
         /// <summary>
+        /// Default to primary screen if appropriate screen not available.
+        /// </summary>
+        public bool DefaultToPrimaryScreen { get; set; }
+
+        /// <summary>
         /// Default constructor.
         /// </summary>
         public GeneralSettingsContainer()
@@ -47,6 +52,7 @@ namespace VideoReinforcer.Settings
             this.ButtonColumns = 2;
             this.MuteShortcut = Key.None;
             this.HideCursorShortcut = Key.None;
+            this.DefaultToPrimaryScreen = true;
         }
 
         /// <summary>

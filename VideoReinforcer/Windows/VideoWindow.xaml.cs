@@ -302,14 +302,24 @@ namespace VideoReinforcer.Windows
         {
             if (!this.IsActive && !this.IsVisible)
             {
-                this.Show();
-
-                if (!this.hasBeenShown && this.screen != null)
+                if (!this.hasBeenShown)
                 {
+                    if (this.screen == null && screenIndex <= System.Windows.Forms.Screen.AllScreens.Length)
+                    {
+                        this.screen = System.Windows.Forms.Screen.AllScreens[screenIndex - 1];
+                    }
+                    if (this.screen == null) return;
+
+                    this.Show();
+
                     this.Top = screen.WorkingArea.Top;
                     this.Left = screen.WorkingArea.Left;
                     this.WindowState = WindowState.Maximized;
                     this.hasBeenShown = true;
+                }
+                else
+                {
+                    this.Show();
                 }
             }
         }
