@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -33,6 +34,11 @@ namespace VideoReinforcer.Windows
         public MainWindow()
         {
             InitializeComponent();
+
+            var assembly = this.GetType().Assembly;
+            var title = (AssemblyTitleAttribute)assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), true).First();
+            var version = assembly.GetName().Version;
+            this.Title = string.Format("{0} v{1}.{2}", title.Title, version.Major, version.Minor);
         }
 
         /// <summary>
